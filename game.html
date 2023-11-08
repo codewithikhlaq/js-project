@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINI PROJECT</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    h1{
+        color: blue;
+    }
+
+    .container{
+
+       width: 300px; 
+       padding: 20px;
+       border: 2px solid #ccc;
+       margin: 0 auto;
+       border-radius: 9px;
+       background-color:blue;
+    }
+button{
+    cursor: pointer;
+ 
+}
+.show #round{
+    color: brown;
+}
+.show #winner{
+    color: green;
+}
+.show{
+    margin-top: 20px;
+    font-weight: bold;
+
+}
+</style>
+<body>
+    <h1>ROCK, PAPER & SCISSORS GAME</h1>
+    <div class="container">
+       
+            <button id="rock" >ROCK</button>
+            <button id="paper" >PAPER</button>
+            <button id="scissors" >SCISSORS</button>
+      <br><br>
+           
+        
+    </div>
+    <div class="show">
+    <div id="winner"></div>
+    <br>
+    <div id="playerresult"></div>
+    <br>
+          <div id="cmpresult"></div>
+    <br><br>
+          <div id="result"></div>
+    <br>
+          <div id="round"></div>
+        </div>
+</body>
+</html>
+<script>
+    //DOM MANIPULATION
+
+    document.getElementById('rock').addEventListener("click", function(){
+        choice('rock');
+    })
+
+    document.getElementById('paper').addEventListener("click", function(){
+        choice('paper');
+    })
+
+    document.getElementById('scissors').addEventListener("click", function(){
+        choice('scissors');
+    })
+    let playerresult = document.getElementById('playerresult')
+    let cmpresult = document.getElementById('cmpresult')
+    let results = document.getElementById('result')
+    let Round = document.getElementById('round')
+    let winner = document.getElementById('winner')
+
+        
+        let playerscore = 0
+        let cmpscore = 0
+        let rounds = 3
+        let round = 0
+       
+          
+    
+            function choice(ps){
+                round++
+                const choose = ["rock","paper","scissors"]
+                let player = ps;
+                let computer = choose[Math.floor(Math.random()*3)]
+                let result 
+                winner.textContent="YOU CHOOSE "+player+" COMPUTER CHOOSE "+computer
+                if(player==computer)
+                {
+                    result = "Round is tie!"
+                    results.textContent= round+" "+result 
+                }
+                else if(
+                    (player=="rock" && computer=="scissors") || 
+                    (player=="paper" && computer=="rock" ) ||
+                    (player=="scissors" && computer=="paper")
+                )
+                {
+                     result= "YOU WIN THIS GAME"
+                      playerscore++
+                      results.textContent=" "
+                      playerresult.textContent = "PLAYER SCORE:    " + playerscore
+                }
+                else{
+
+                    result= "COMPUTER WIN THIS GAME"
+                    cmpscore++
+                    results.textContent=" "
+                     cmpresult.textContent =   "COMPUTER SCORE:   " + cmpscore
+                }
+                
+                Round.textContent="ROUND:  "+round
+                if(round>=rounds)
+                {
+                    if(playerscore>cmpscore)
+                    {
+                        
+                        alert("PLAYER SCORE "+playerscore+" COMPUTER SCORE "+cmpscore +" YOU WIN THIS GAME! ")
+                        
+                        results.textContent=" "
+                        Round.textContent=" "
+                        winner.textContent=" "
+                        playerresult.textContent=" "
+                        cmpresult.textContent=" "
+                    }
+                    else if(cmpscore>playerscore)
+                    {
+                        alert("PLAYER SCORE "+playerscore+" COMPUTER SCORE "+cmpscore + " COMPUTER WIN THIS GAME!")
+                        results.textContent=" "
+                        Round.textContent=" "
+                        winner.textContent=" "
+                        playerresult.textContent=" "
+                        cmpresult.textContent=" "
+                    }
+                    else
+                    {
+                        alert("PLAYER SCORE "+playerscore+" COMPUTER SCORE "+cmpscore +" GAME TIE!")
+                        Round.textContent=" "
+                          results.textContent=" "
+                        winner.textContent=" "
+                        playerresult.textContent=" "
+                        cmpresult.textContent=" "
+                    }
+                }
+                // display the  results
+            
+              
+             //   result.textContent = "YOU SELECT  " + playerchoice + "COMPUTER SELECT " + cmpchoice
+
+            
+        }
+ 
+   
+    
+</script>
